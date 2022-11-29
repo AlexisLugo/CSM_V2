@@ -1,0 +1,16 @@
+C:\Users\LGA1JU\source\repos\CSM_V2\CSM_V2\bin\Debug\CSM_V2.exe.config
+C:\Users\LGA1JU\source\repos\CSM_V2\CSM_V2\bin\Debug\CSM_V2.exe
+C:\Users\LGA1JU\source\repos\CSM_V2\CSM_V2\bin\Debug\CSM_V2.pdb
+C:\Users\LGA1JU\source\repos\CSM_V2\CSM_V2\obj\Debug\CSM_V2.csprojAssemblyReference.cache
+C:\Users\LGA1JU\source\repos\CSM_V2\CSM_V2\obj\Debug\CSM_V2.Administrator.resources
+C:\Users\LGA1JU\source\repos\CSM_V2\CSM_V2\obj\Debug\CSM_V2.Form1.resources
+C:\Users\LGA1JU\source\repos\CSM_V2\CSM_V2\obj\Debug\CSM_V2.Inventory.resources
+C:\Users\LGA1JU\source\repos\CSM_V2\CSM_V2\obj\Debug\CSM_V2.NewFolder.resources
+C:\Users\LGA1JU\source\repos\CSM_V2\CSM_V2\obj\Debug\CSM_V2.Properties.Resources.resources
+C:\Users\LGA1JU\source\repos\CSM_V2\CSM_V2\obj\Debug\CSM_V2.Scrap.resources
+C:\Users\LGA1JU\source\repos\CSM_V2\CSM_V2\obj\Debug\CSM_V2.csproj.GenerateResource.cache
+C:\Users\LGA1JU\source\repos\CSM_V2\CSM_V2\obj\Debug\CSM_V2.csproj.CoreCompileInputs.cache
+C:\Users\LGA1JU\source\repos\CSM_V2\CSM_V2\obj\Debug\CSM_V2.exe
+C:\Users\LGA1JU\source\repos\CSM_V2\CSM_V2\obj\Debug\CSM_V2.pdb
+C:\Users\LGA1JU\source\repos\CSM_V2\CSM_V2\obj\Debug\CSM_V2.LastQC.resources
+C:\Users\LGA1JU\source\repos\CSM_V2\CSM_V2\obj\Debug\CSM_V2.Details.resources
