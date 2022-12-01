@@ -65,8 +65,10 @@ namespace CSM_V2
             this.MData.Name = "MData";
             this.MData.RowHeadersWidth = 51;
             this.MData.RowTemplate.Height = 24;
+            this.MData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.MData.Size = new System.Drawing.Size(622, 237);
             this.MData.TabIndex = 0;
+            this.MData.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.MData_CellValueChanged);
             // 
             // Close_bn
             // 

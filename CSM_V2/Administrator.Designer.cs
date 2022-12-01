@@ -39,6 +39,8 @@ namespace CSM_V2
             this.button1 = new System.Windows.Forms.Button();
             this.Prev_btn = new System.Windows.Forms.Button();
             this.Next_btn = new System.Windows.Forms.Button();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.MasterData)).BeginInit();
             this.SuspendLayout();
             // 
@@ -50,6 +52,7 @@ namespace CSM_V2
             this.MasterData.Name = "MasterData";
             this.MasterData.RowHeadersWidth = 51;
             this.MasterData.RowTemplate.Height = 24;
+            this.MasterData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.MasterData.Size = new System.Drawing.Size(938, 426);
             this.MasterData.TabIndex = 19;
             this.MasterData.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.MasterData_CellValueChanged);
@@ -64,6 +67,7 @@ namespace CSM_V2
             this.button6.Text = "Close";
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click);
+            this.button6.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MasterData_KeyDown);
             // 
             // user_btn
             // 
@@ -75,6 +79,7 @@ namespace CSM_V2
             this.user_btn.Text = "Users";
             this.user_btn.UseVisualStyleBackColor = true;
             this.user_btn.Click += new System.EventHandler(this.user_btn_Click);
+            this.user_btn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MasterData_KeyDown);
             // 
             // scrap_btn
             // 
@@ -86,6 +91,7 @@ namespace CSM_V2
             this.scrap_btn.Text = "Scrap";
             this.scrap_btn.UseVisualStyleBackColor = true;
             this.scrap_btn.Click += new System.EventHandler(this.scrap_btn_Click);
+            this.scrap_btn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MasterData_KeyDown);
             // 
             // csm_btn
             // 
@@ -97,6 +103,7 @@ namespace CSM_V2
             this.csm_btn.Text = "Warranty CSM";
             this.csm_btn.UseVisualStyleBackColor = true;
             this.csm_btn.Click += new System.EventHandler(this.csm_btn_Click);
+            this.csm_btn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MasterData_KeyDown);
             // 
             // button2
             // 
@@ -107,6 +114,7 @@ namespace CSM_V2
             this.button2.TabIndex = 14;
             this.button2.Text = "Search";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MasterData_KeyDown);
             // 
             // button1
             // 
@@ -117,6 +125,7 @@ namespace CSM_V2
             this.button1.TabIndex = 13;
             this.button1.Text = "Filter";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MasterData_KeyDown);
             // 
             // Prev_btn
             // 
@@ -127,6 +136,7 @@ namespace CSM_V2
             this.Prev_btn.Text = "<<";
             this.Prev_btn.UseVisualStyleBackColor = true;
             this.Prev_btn.Click += new System.EventHandler(this.button7_Click);
+            this.Prev_btn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MasterData_KeyDown);
             // 
             // Next_btn
             // 
@@ -137,6 +147,15 @@ namespace CSM_V2
             this.Next_btn.Text = ">>";
             this.Next_btn.UseVisualStyleBackColor = true;
             this.Next_btn.Click += new System.EventHandler(this.Next_btn_Click);
+            this.Next_btn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MasterData_KeyDown);
+            // 
+            // backgroundWorker1
+            // 
+            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
+            // 
+            // backgroundWorker2
+            // 
+            this.backgroundWorker2.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker2_DoWork);
             // 
             // Administrator
             // 
@@ -174,5 +193,7 @@ namespace CSM_V2
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button Prev_btn;
         private System.Windows.Forms.Button Next_btn;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.ComponentModel.BackgroundWorker backgroundWorker2;
     }
 }

@@ -18,6 +18,9 @@ namespace CSM_V2
         OracleDataAdapter _objda;
         int minValue = 0;
         int maxValue = 10;
+        string gID = null;
+        string gColumnName = null;
+        string gValue = null;
         public Administrator()//Constructor
         {
             InitializeComponent();
@@ -37,7 +40,7 @@ namespace CSM_V2
         {
             _objdt = new DataTable();
             DataTable _objtotalRecord = new DataTable();
-            string querystring = "select id, qc, dmc_1, dmc_2, dmc_3, product, directory, warehouse, box, folder_creation_date, scrap, part_number, user_name from lab_warranty_csm";
+            string querystring = "SELECT ID, QC, QC_ORIGINAL, DMC_1, DMC_2, DMC_3, PRODUCT, DIRECTORY, WAREHOUSE, BOX, FOLDER_CREATION_DATE, SCRAP, PART_NUMBER, USER_NAME FROM LAB_WARRANTY_CSM";
             OracleConnection _objcon = new OracleConnection(connectionstring);
             _objda = new OracleDataAdapter(querystring, _objcon);
             _objcon.Open();
@@ -91,7 +94,7 @@ namespace CSM_V2
         {
             _objdt = new DataTable();
             DataTable _objtotalRecord = new DataTable();
-            string querystring = "select id, qc, qc_original, part_number, misc, price_, date_, user_ from lab_warranty_csm_scrap";
+            string querystring = "SELECT ID, QC, QC_ORIGINAL, PART_NUMBER, MISC, PRICE_, DATE_, USER_ FROM LAB_WARRANTY_CSM_SCRAP";
             OracleConnection _objcon = new OracleConnection(connectionstring);
             _objda = new OracleDataAdapter(querystring, _objcon);
             _objcon.Open();
@@ -104,7 +107,7 @@ namespace CSM_V2
         {
             _objdt = new DataTable();
             DataTable _objtotalRecord = new DataTable();
-            string querystring = "select id, users_, level_ from lab_warranty_csm_users";
+            string querystring = "SELECT ID, USERS_, LEVEL_ FROM LAB_WARRANTY_CSM_USERS";
             OracleConnection _objcon = new OracleConnection(connectionstring);
             _objda = new OracleDataAdapter(querystring, _objcon);
             _objcon.Open();
@@ -133,40 +136,93 @@ namespace CSM_V2
             {
                 this.Close();
             }
-        }        
+        }                
+
+        private void MasterData_KeyDown(object sender, KeyEventArgs e)
+        {
+            
+        }
 
         private void MasterData_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            for (int item = 0; item <= MasterData.Columns.Count ; item++)
+            try
             {
-                string qry = ("update lab_warranty_csm set qc=:qc,qc_original=:qc_original, dmc_1=:dmc__1, dmc_2=:dmc_2, dmc_3=:dmc_3, product=:product, directory=:directory, warehouse=:warehouse, box=:box, folder_creation_date=:folder_creation_date, scrap=:scrap, part_number=:part_number, user_name=:user_name where id=:id");
-                OracleCommand cmd = new OracleCommand(qry, connectionstring);
+                gID = MasterData.Rows[e.RowIndex].Cells[0].Value.ToString();
+                gColumnName = MasterData.Columns[e.ColumnIndex].Name;
+                gValue = MasterData.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
 
-                cmd.Parameters.AddWithValue(":qc", MasterData.Rows[item].Cells[1].Value);
-                cmd.Parameters.AddWithValue(":qc_original", MasterData.Rows[item].Cells[2].Value);
-                cmd.Parameters.AddWithValue(":dmc_1", MasterData.Rows[item].Cells[3].Value);
-                cmd.Parameters.AddWithValue(":dmc_2", MasterData.Rows[item].Cells[4].Value);
-                cmd.Parameters.AddWithValue(":dmc_3", MasterData.Rows[item].Cells[5].Value);
-                cmd.Parameters.AddWithValue(":product", MasterData.Rows[item].Cells[6].Value);
-                cmd.Parameters.AddWithValue(":directory", MasterData.Rows[item].Cells[7].Value);
-                cmd.Parameters.AddWithValue(":warehouse", MasterData.Rows[item].Cells[8].Value);
-                cmd.Parameters.AddWithValue(":box", MasterData.Rows[item].Cells[9].Value);
-                cmd.Parameters.AddWithValue(":folder_creation_date", MasterData.Rows[item].Cells[10].Value);
-                cmd.Parameters.AddWithValue(":scrap", MasterData.Rows[item].Cells[11].Value);
-                cmd.Parameters.AddWithValue(":part_number", MasterData.Rows[item].Cells[12].Value);
-                cmd.Parameters.AddWithValue(":user_name", MasterData.Rows[item].Cells[13].Value);
-                cmd.Parameters.AddWithValue(":id", MasterData.Rows[item].Cells[0].Value);
-
-                connectionstring.Open();
-                cmd.ExecuteNonQuery();
-                connectionstring.Close();
+                backgroundWorker1.RunWorkerAsync();
             }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
+            
 
-            MessageBox.Show("Save lastest updates");
-            //UpdateBalance();
+            /*
+            for (int item = 0; item <= MasterData.Rows.Count - 1; item++)
+            {
+          
+                string qry = "UPDATE LAB_WARRANTY_CSM SET QC = :QC, QC_ORIGINAL = :QC_ORIGINAL, DMC_1 = :DMC_1, DMC_2 = :DMC_2, DMC_3 = :DMC_3, PRODUCT = :PRODUCT,DIRECTORY = :DIRECTORY, WAREHOUSE = :WAREHOUSE, BOX = :BOX, FOLDER_CREATION_DATE = :FOLDER_CREATION_DATE, SCRAP = :SCRAP, PART_NUMBER = :PART_NUMBER, USER_NAME = :USER_NAME WHERE ID = :ID";
+          
+                OracleConnection conex = new OracleConnection(connectionstring);//aqui
+                OracleCommand cmd = new OracleCommand(qry, conex);
 
+                cmd.Parameters.AddWithValue(":QC", MasterData.Rows[item].Cells[1].Value);
+                cmd.Parameters.AddWithValue(":QC_ORIGINAL", MasterData.Rows[item].Cells[2].Value);
+                cmd.Parameters.AddWithValue(":DMC_1", MasterData.Rows[item].Cells[3].Value);
+                cmd.Parameters.AddWithValue(":DMC_2", MasterData.Rows[item].Cells[4].Value);
+                cmd.Parameters.AddWithValue(":DMC_3", MasterData.Rows[item].Cells[5].Value);
+                cmd.Parameters.AddWithValue(":PRODUCT", MasterData.Rows[item].Cells[6].Value);
+                cmd.Parameters.AddWithValue(":DIRECTORY", MasterData.Rows[item].Cells[7].Value);
+                cmd.Parameters.AddWithValue(":WAREHOUSE", MasterData.Rows[item].Cells[8].Value);
+                cmd.Parameters.AddWithValue(":BOX", MasterData.Rows[item].Cells[9].Value);
+                cmd.Parameters.AddWithValue(":FOLDER_CREATION_DATE", MasterData.Rows[item].Cells[10].Value);
+                cmd.Parameters.AddWithValue(":SCRAP", MasterData.Rows[item].Cells[11].Value);
+                cmd.Parameters.AddWithValue(":PART_NUMBER", MasterData.Rows[item].Cells[12].Value);
+                cmd.Parameters.AddWithValue(":USER_NAME", MasterData.Rows[item].Cells[13].Value);
+                cmd.Parameters.AddWithValue(":ID", MasterData.Rows[item].Cells[0].Value);
+
+                conex.Open();
+                conex.Close();
+                conex.Dispose();
+            }
+            MessageBox.Show("Information updated", "Update", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            */
         }
 
+        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        {
+            try
+            {
+                string qry = $"UPDATE LAB_WARRANTY_CSM SET {gColumnName} = '{gValue}' WHERE ID = {gID}";
+                Console.WriteLine(qry);
 
+                OracleConnection conex = new OracleConnection(connectionstring);//aqui
+
+                conex.Open();
+                OracleCommand cmd = new OracleCommand(qry, conex);
+                cmd.Connection = conex;
+                cmd.CommandText = qry;
+                cmd.CommandType = CommandType.Text;
+                int xx = cmd.ExecuteNonQuery();
+                cmd.Dispose();
+                conex.Dispose();
+                conex.Close();
+                
+                Console.WriteLine("Execute BackgroundWorker!!");
+                MessageBox.Show("Information updated", "Update", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }catch(Exception ex)
+            {
+                MessageBox.Show("Error/n" + ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void backgroundWorker2_DoWork(object sender, DoWorkEventArgs e)
+        {
+
+        }
     }
 }
